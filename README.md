@@ -1,7 +1,7 @@
 # Compose Stacked Snackbar
-Stacked Snackbar for Compose Multiplatform (Android, iOS and Desktop). This library is easy to use and using same approach with default compose snackbar, make it easier to implement to new or existing project. It has built-in basic snackbar type (error, warning, success and info) and also able to accept custom snackbar view
+Stacked Snackbar for Compose Multiplatform (Android, iOS and Desktop). This library has built-in basic snackbar type (error, warning, success and info) and also able to accept custom snackbar view
 
-![alt text](https://github.com/rizmaulana/floating-slideup-sheet/blob/master/assets/slideupmenu.png)
+![alt text](https://raw.githubusercontent.com/rizmaulana/stacked-snackbar/main/readme_images/cover.png)
 
 ![GitHub forks](https://img.shields.io/github/forks/rizmaulana/compose-stacked-snackbar.svg)
 ![GitHub contributors](https://img.shields.io/github/contributors/rizmaulana/compose-stacked-snackbar.svg)
