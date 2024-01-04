@@ -1,0 +1,35 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:////PointingToDeclaration/lib/[root]/index.html
+$dokka.location://StackedSnackbarHost/#StackedSnakbarHostState#androidx.compose.ui.Modifier/PointingToDeclaration/lib/[root]/-stacked-snackbar-host.html
+$dokka.location://rememberStackedSnackbarHostState/#kotlin.Int#StackedSnackbarAnimation/PointingToDeclaration/lib/[root]/remember-stacked-snackbar-host-state.html
+$dokka.location:/StackedSnackbarAnimation.Bounce///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}lib/[root]/-stacked-snackbar-animation/-bounce/index.html
+$dokka.location:/StackedSnackbarAnimation.Slide///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}lib/[root]/-stacked-snackbar-animation/-slide/index.html
+$dokka.location:/StackedSnackbarAnimation///PointingToDeclaration/lib/[root]/-stacked-snackbar-animation/index.html
+$dokka.location:/StackedSnackbarAnimation/enterAnimationSpec/#/PointingToDeclaration/lib/[root]/-stacked-snackbar-animation/enter-animation-spec.html
+$dokka.location:/StackedSnackbarAnimation/entries/#/PointingToDeclaration/lib/[root]/-stacked-snackbar-animation/entries.html
+$dokka.location:/StackedSnackbarAnimation/exitAnimationSpec/#/PointingToDeclaration/lib/[root]/-stacked-snackbar-animation/exit-animation-spec.html
+$dokka.location:/StackedSnackbarAnimation/paddingAnimationSpec/#/PointingToDeclaration/lib/[root]/-stacked-snackbar-animation/padding-animation-spec.html
+$dokka.location:/StackedSnackbarAnimation/scaleAnimationSpec/#/PointingToDeclaration/lib/[root]/-stacked-snackbar-animation/scale-animation-spec.html
+$dokka.location:/StackedSnackbarAnimation/valueOf/#kotlin.String/PointingToDeclaration/lib/[root]/-stacked-snackbar-animation/value-of.html
+$dokka.location:/StackedSnackbarAnimation/values/#/PointingToDeclaration/lib/[root]/-stacked-snackbar-animation/values.html
+$dokka.location:/StackedSnackbarDuration.Indefinite///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}lib/[root]/-stacked-snackbar-duration/-indefinite/index.html
+$dokka.location:/StackedSnackbarDuration.Long///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}lib/[root]/-stacked-snackbar-duration/-long/index.html
+$dokka.location:/StackedSnackbarDuration.Short///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}lib/[root]/-stacked-snackbar-duration/-short/index.html
+$dokka.location:/StackedSnackbarDuration///PointingToDeclaration/lib/[root]/-stacked-snackbar-duration/index.html
+$dokka.location:/StackedSnackbarDuration/entries/#/PointingToDeclaration/lib/[root]/-stacked-snackbar-duration/entries.html
+$dokka.location:/StackedSnackbarDuration/valueOf/#kotlin.String/PointingToDeclaration/lib/[root]/-stacked-snackbar-duration/value-of.html
+$dokka.location:/StackedSnackbarDuration/values/#/PointingToDeclaration/lib/[root]/-stacked-snackbar-duration/values.html
+$dokka.location:/StackedSnakbarHostState///PointingToDeclaration/lib/[root]/-stacked-snakbar-host-state/index.html
+$dokka.location:/StackedSnakbarHostState/StackedSnakbarHostState/#kotlinx.coroutines.CoroutineScope#StackedSnackbarAnimation#kotlin.Int/PointingToDeclaration/lib/[root]/-stacked-snakbar-host-state/-stacked-snakbar-host-state.html
+$dokka.location:/StackedSnakbarHostState/animation/#/PointingToDeclaration/lib/[root]/-stacked-snakbar-host-state/animation.html
+$dokka.location:/StackedSnakbarHostState/maxStack/#/PointingToDeclaration/lib/[root]/-stacked-snakbar-host-state/max-stack.html
+$dokka.location:/StackedSnakbarHostState/showCustomSnackbar/#kotlin.Function1[kotlin.Function0[kotlin.Unit],kotlin.Unit]#StackedSnackbarDuration/PointingToDeclaration/lib/[root]/-stacked-snakbar-host-state/show-custom-snackbar.html
+$dokka.location:/StackedSnakbarHostState/showErrorSnackbar/#kotlin.String#kotlin.String?#kotlin.String?#kotlin.Function0[kotlin.Unit]?#StackedSnackbarDuration/PointingToDeclaration/lib/[root]/-stacked-snakbar-host-state/show-error-snackbar.html
+$dokka.location:/StackedSnakbarHostState/showInfoSnackbar/#kotlin.String#kotlin.String?#kotlin.String?#kotlin.Function0[kotlin.Unit]?#StackedSnackbarDuration/PointingToDeclaration/lib/[root]/-stacked-snakbar-host-state/show-info-snackbar.html
+$dokka.location:/StackedSnakbarHostState/showSuccessSnackbar/#kotlin.String#kotlin.String?#kotlin.String?#kotlin.Function0[kotlin.Unit]?#StackedSnackbarDuration/PointingToDeclaration/lib/[root]/-stacked-snakbar-host-state/show-success-snackbar.html
+$dokka.location:/StackedSnakbarHostState/showWarningSnackbar/#kotlin.String#kotlin.String?#kotlin.String?#kotlin.Function0[kotlin.Unit]?#StackedSnackbarDuration/PointingToDeclaration/lib/[root]/-stacked-snakbar-host-state/show-warning-snackbar.html
+module:lib
+com.astro.stockopname.view.fragment.sync
+com.astro.stockopname.view.fragment.sync.snackbaricon
+internal
