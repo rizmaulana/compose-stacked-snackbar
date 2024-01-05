@@ -10,6 +10,7 @@ Stacked Snackbar for Compose Multiplatform (Android, iOS and Desktop). This libr
 
 ## Interaction
 https://raw.githubusercontent.com/rizmaulana/stacked-snackbar/main/readme_images/interaction.mp4
+
 Compose Stacked Snackbar support slide left or right interaction to dismiss the snackbar
 
 ### Animation Type
