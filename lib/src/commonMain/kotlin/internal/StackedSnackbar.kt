@@ -4,11 +4,8 @@ import Constant
 import StackedSnackbarAnimation
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.LinearEasing
-import androidx.compose.animation.core.Spring
-import androidx.compose.animation.core.VisibilityThreshold
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.slideIn
 import androidx.compose.animation.slideOut
@@ -50,10 +47,8 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import kotlinx.collections.immutable.ImmutableList
 import org.jetbrains.compose.resources.ExperimentalResourceApi
-import org.jetbrains.compose.resources.painterResource
 import kotlin.math.abs
 import kotlin.math.roundToInt
-
 
 @Composable
 internal fun StackedSnackbar(
@@ -74,88 +69,95 @@ internal fun StackedSnackbar(
 
             val scaleAnimation by animateFloatAsState(
                 scale,
-                animationSpec = animation.scaleAnimationSpec
+                animationSpec = animation.scaleAnimationSpec,
             )
             val initialPos by animateFloatAsState(
                 0f,
-                animationSpec = animation.scaleAnimationSpec
+                animationSpec = animation.scaleAnimationSpec,
             )
             val paddingAnimation by animateDpAsState(
                 padding,
-                animationSpec = animation.paddingAnimationSpec
+                animationSpec = animation.paddingAnimationSpec,
             )
 
             var offsetX by remember { mutableStateOf(-1f) }
 
             AnimatedVisibility(
                 visible = if (snackbarDataSize.dec() == index) firstItemVisibility else true,
-                enter = slideIn(
-                    initialOffset =
-                    { IntOffset(0, Constant.Y_TARGET_ENTER) }, animationSpec = animation.enterAnimationSpec
-                ),
-                exit = if (offsetX == -1f) {
-                    slideOut(
-                        targetOffset =
-                        { IntOffset(0, Constant.Y_TARGET_EXIT) }, animationSpec = animation.exitAnimationSpec
-                    )
-                } else {
-                    slideOutHorizontally(
-                        targetOffsetX = { if (offsetX > 0) Constant.X_TARGET_EXIT_RIGHT else Constant.X_TARGET_EXIT_LEFT },
-                        animationSpec = tween(
-                            easing = LinearEasing
+                enter =
+                    slideIn(
+                        initialOffset =
+                            { IntOffset(0, Constant.Y_TARGET_ENTER) },
+                        animationSpec = animation.enterAnimationSpec,
+                    ),
+                exit =
+                    if (offsetX == -1f) {
+                        slideOut(
+                            targetOffset =
+                                { IntOffset(0, Constant.Y_TARGET_EXIT) },
+                            animationSpec = animation.exitAnimationSpec,
                         )
-                    )
-
-                }
+                    } else {
+                        slideOutHorizontally(
+                            targetOffsetX = { if (offsetX > 0) Constant.X_TARGET_EXIT_RIGHT else Constant.X_TARGET_EXIT_LEFT },
+                            animationSpec =
+                                tween(
+                                    easing = LinearEasing,
+                                ),
+                        )
+                    },
             ) {
-
-                val draggableModifier = if (snackbarData.lastIndex == index) {
-                    Modifier
-                        .offset { IntOffset(offsetX.roundToInt(), 0) }
-                        .draggable(
-                            orientation = Orientation.Horizontal,
-                            state = rememberDraggableState { delta ->
-                                offsetX += delta
-                            },
-                            onDragStopped = {
-                                if (offsetX >= Constant.OFFSET_THRESHOLD_EXIT_RIGHT || offsetX <= Constant.OFFSET_THRESHOLD_EXIT_LEFT) {
-                                    onSnackbarRemoved.invoke()
-                                } else {
-                                    offsetX = initialPos
-                                }
-                            }
-                        )
-                } else {
-                    Modifier
-                }
-                val snackbarScale = if (snackbarDataSize - index > maxStack) {
-                    0f
-                } else {
-                    scaleAnimation
-                }
+                val draggableModifier =
+                    if (snackbarData.lastIndex == index) {
+                        Modifier
+                            .offset { IntOffset(offsetX.roundToInt(), 0) }
+                            .draggable(
+                                orientation = Orientation.Horizontal,
+                                state =
+                                    rememberDraggableState { delta ->
+                                        offsetX += delta
+                                    },
+                                onDragStopped = {
+                                    if (offsetX >= Constant.OFFSET_THRESHOLD_EXIT_RIGHT || offsetX <= Constant.OFFSET_THRESHOLD_EXIT_LEFT) {
+                                        onSnackbarRemoved.invoke()
+                                    } else {
+                                        offsetX = initialPos
+                                    }
+                                },
+                            )
+                    } else {
+                        Modifier
+                    }
+                val snackbarScale =
+                    if (snackbarDataSize - index > maxStack) {
+                        0f
+                    } else {
+                        scaleAnimation
+                    }
                 when (data) {
-                    is StackedSnackbarData.Custom -> CustomStackedSnackbarItem(
-                        data = data,
-                        scaleAnimation = snackbarScale,
-                        paddingAnimation = paddingAnimation,
-                        modifier = draggableModifier,
-                        onActionClicked = {
-                            onSnackbarRemoved.invoke()
-                        }
-                    )
+                    is StackedSnackbarData.Custom ->
+                        CustomStackedSnackbarItem(
+                            data = data,
+                            scaleAnimation = snackbarScale,
+                            paddingAnimation = paddingAnimation,
+                            modifier = draggableModifier,
+                            onActionClicked = {
+                                onSnackbarRemoved.invoke()
+                            },
+                        )
 
-                    is StackedSnackbarData.Normal -> NormalStackedSnackbarItem(
-                        data = data,
-                        scaleAnimation = snackbarScale,
-                        paddingAnimation = paddingAnimation,
-                        modifier = draggableModifier,
-                        onActionClicked = {
-                            onSnackbarRemoved.invoke()
-                            data.action?.invoke()
-                        }
-                    )
+                    is StackedSnackbarData.Normal ->
+                        NormalStackedSnackbarItem(
+                            data = data,
+                            scaleAnimation = snackbarScale,
+                            paddingAnimation = paddingAnimation,
+                            modifier = draggableModifier,
+                            onActionClicked = {
+                                onSnackbarRemoved.invoke()
+                                data.action?.invoke()
+                            },
+                        )
                 }
-
             }
         }
     }
@@ -167,7 +169,7 @@ private fun CustomStackedSnackbarItem(
     scaleAnimation: Float,
     paddingAnimation: Dp,
     onActionClicked: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     CardSnackbarContainer(
         scaleAnimation = scaleAnimation,
@@ -175,16 +177,17 @@ private fun CustomStackedSnackbarItem(
         modifier = modifier,
         content = {
             Box(
-                modifier = Modifier
-                    .background(Color.White)
-                    .fillMaxWidth()
-                    .wrapContentHeight()
-                    .clip(RoundedCornerShape(16.dp))
-                    .padding(16.dp)
+                modifier =
+                    Modifier
+                        .background(Color.White)
+                        .fillMaxWidth()
+                        .wrapContentHeight()
+                        .clip(RoundedCornerShape(16.dp))
+                        .padding(16.dp),
             ) {
                 data.content.invoke(onActionClicked)
             }
-        }
+        },
     )
 }
 
@@ -195,7 +198,7 @@ private fun NormalStackedSnackbarItem(
     scaleAnimation: Float,
     paddingAnimation: Dp,
     onActionClicked: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     CardSnackbarContainer(
         scaleAnimation = scaleAnimation,
@@ -203,26 +206,28 @@ private fun NormalStackedSnackbarItem(
         modifier = modifier,
         content = {
             Row(
-                modifier = Modifier
-                    .background(Color.White)
-                    .fillMaxWidth()
-                    .wrapContentHeight()
-                    .clip(RoundedCornerShape(16.dp))
-                    .padding(16.dp),
+                modifier =
+                    Modifier
+                        .background(Color.White)
+                        .fillMaxWidth()
+                        .wrapContentHeight()
+                        .clip(RoundedCornerShape(16.dp))
+                        .padding(16.dp),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
             ) {
                 Box(
                     contentAlignment = Alignment.Center,
-                    modifier = Modifier
-                        .size(38.dp)
-                        .clip(CircleShape)
-                        .background(data.type.color.copy(alpha = 0.1f))
-                        .padding(8.dp)
+                    modifier =
+                        Modifier
+                            .size(38.dp)
+                            .clip(CircleShape)
+                            .background(data.type.color.copy(alpha = 0.1f))
+                            .padding(8.dp),
                 ) {
                     Image(
                         imageVector = data.type.icon,
-                        null
+                        null,
                     )
                 }
 
@@ -230,9 +235,10 @@ private fun NormalStackedSnackbarItem(
                     Text(
                         text = data.title,
                         overflow = TextOverflow.Ellipsis,
-                        style = MaterialTheme.typography.body2.copy(
-                            fontWeight = FontWeight.Bold
-                        ),
+                        style =
+                            MaterialTheme.typography.body2.copy(
+                                fontWeight = FontWeight.Bold,
+                            ),
                         color = Color.Black,
                     )
                     if (data.description.isNullOrEmpty().not()) {
@@ -241,7 +247,7 @@ private fun NormalStackedSnackbarItem(
                             maxLines = 2,
                             overflow = TextOverflow.Ellipsis,
                             style = MaterialTheme.typography.caption,
-                            color = Color.Gray
+                            color = Color.Gray,
                         )
                     }
                     if (data.actionTitle.isNullOrEmpty().not()) {
@@ -250,19 +256,22 @@ private fun NormalStackedSnackbarItem(
                             contentAlignment = Alignment.BottomEnd,
                         ) {
                             Text(
-                                data.actionTitle.orEmpty(), modifier = Modifier.clickable {
-                                    onActionClicked.invoke()
-                                },
-                                style = MaterialTheme.typography.body2.copy(
-                                    fontWeight = FontWeight.Bold
-                                ),
-                                color = data.type.color
+                                data.actionTitle.orEmpty(),
+                                modifier =
+                                    Modifier.clickable {
+                                        onActionClicked.invoke()
+                                    },
+                                style =
+                                    MaterialTheme.typography.body2.copy(
+                                        fontWeight = FontWeight.Bold,
+                                    ),
+                                color = data.type.color,
                             )
                         }
                     }
                 }
             }
-        }
+        },
     )
 }
 
@@ -271,16 +280,17 @@ private fun CardSnackbarContainer(
     scaleAnimation: Float,
     paddingAnimation: Dp,
     content: @Composable () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Card(
         shape = RoundedCornerShape(16.dp),
-        modifier = Modifier
-            .padding(bottom = paddingAnimation, start = 16.dp, end = 16.dp)
-            .wrapContentHeight()
-            .scale(scaleAnimation)
-            .then(modifier),
-        elevation = 16.dp
+        modifier =
+            Modifier
+                .padding(bottom = paddingAnimation, start = 16.dp, end = 16.dp)
+                .wrapContentHeight()
+                .scale(scaleAnimation)
+                .then(modifier),
+        elevation = 16.dp,
     ) {
         content.invoke()
     }

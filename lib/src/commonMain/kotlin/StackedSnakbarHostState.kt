@@ -1,11 +1,9 @@
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -57,7 +55,7 @@ fun StackedSnackbarHost(
             firstItemVisibility = firstItemVisible,
             maxStack = hostState.maxStack,
             animation = hostState.animation,
-            modifier = modifier
+            modifier = modifier,
         )
     }
 }
@@ -66,9 +64,8 @@ fun StackedSnackbarHost(
 class StackedSnakbarHostState(
     private val coroutinesScope: CoroutineScope,
     val animation: StackedSnackbarAnimation,
-    val maxStack: Int = Int.MAX_VALUE
+    val maxStack: Int = Int.MAX_VALUE,
 ) {
-
     internal var currentSnackbarData by mutableStateOf<List<StackedSnackbarData>>(emptyList())
     internal val newSnackbarHosted = MutableStateFlow(false)
 
@@ -77,12 +74,18 @@ class StackedSnakbarHostState(
         description: String? = null,
         actionTitle: String? = null,
         action: (() -> Unit)? = null,
-        duration: StackedSnackbarDuration = StackedSnackbarDuration.Indefinite
+        duration: StackedSnackbarDuration = StackedSnackbarDuration.Indefinite,
     ) {
         showSnackbar(
-            data = StackedSnackbarData.Normal(
-                Type.Info, title, description, actionTitle, action, duration
-            )
+            data =
+                StackedSnackbarData.Normal(
+                    Type.Info,
+                    title,
+                    description,
+                    actionTitle,
+                    action,
+                    duration,
+                ),
         )
     }
 
@@ -91,12 +94,18 @@ class StackedSnakbarHostState(
         description: String? = null,
         actionTitle: String? = null,
         action: (() -> Unit)? = null,
-        duration: StackedSnackbarDuration = StackedSnackbarDuration.Indefinite
+        duration: StackedSnackbarDuration = StackedSnackbarDuration.Indefinite,
     ) {
         showSnackbar(
-            data = StackedSnackbarData.Normal(
-                Type.Success, title, description, actionTitle, action, duration
-            )
+            data =
+                StackedSnackbarData.Normal(
+                    Type.Success,
+                    title,
+                    description,
+                    actionTitle,
+                    action,
+                    duration,
+                ),
         )
     }
 
@@ -105,12 +114,18 @@ class StackedSnakbarHostState(
         description: String? = null,
         actionTitle: String? = null,
         action: (() -> Unit)? = null,
-        duration: StackedSnackbarDuration = StackedSnackbarDuration.Indefinite
+        duration: StackedSnackbarDuration = StackedSnackbarDuration.Indefinite,
     ) {
         showSnackbar(
-            data = StackedSnackbarData.Normal(
-                Type.Warning, title, description, actionTitle, action, duration
-            )
+            data =
+                StackedSnackbarData.Normal(
+                    Type.Warning,
+                    title,
+                    description,
+                    actionTitle,
+                    action,
+                    duration,
+                ),
         )
     }
 
@@ -119,31 +134,36 @@ class StackedSnakbarHostState(
         description: String? = null,
         actionTitle: String? = null,
         action: (() -> Unit)? = null,
-        duration: StackedSnackbarDuration = StackedSnackbarDuration.Indefinite
+        duration: StackedSnackbarDuration = StackedSnackbarDuration.Indefinite,
     ) {
         showSnackbar(
-            data = StackedSnackbarData.Normal(
-                Type.Error, title, description, actionTitle, action, duration
-            )
+            data =
+                StackedSnackbarData.Normal(
+                    Type.Error,
+                    title,
+                    description,
+                    actionTitle,
+                    action,
+                    duration,
+                ),
         )
     }
 
     fun showCustomSnackbar(
         content: @Composable (() -> Unit) -> Unit,
-        duration: StackedSnackbarDuration = StackedSnackbarDuration.Indefinite
+        duration: StackedSnackbarDuration = StackedSnackbarDuration.Indefinite,
     ) {
         showSnackbar(
-            data = StackedSnackbarData.Custom(content, duration)
+            data = StackedSnackbarData.Custom(content, duration),
         )
     }
 
-    private fun showSnackbar(
-        data: StackedSnackbarData
-    ) {
+    private fun showSnackbar(data: StackedSnackbarData) {
         newSnackbarHosted.value = false
-        currentSnackbarData = currentSnackbarData.toMutableList().apply {
-            add(data)
-        }
+        currentSnackbarData =
+            currentSnackbarData.toMutableList().apply {
+                add(data)
+            }
         coroutinesScope.launch {
             delay(1_00)
             newSnackbarHosted.value = true
@@ -151,8 +171,9 @@ class StackedSnakbarHostState(
     }
 }
 
-private fun StackedSnackbarDuration.toMillis(): Long = when (this) {
-    StackedSnackbarDuration.Short -> 4000L
-    StackedSnackbarDuration.Long -> 10000L
-    StackedSnackbarDuration.Indefinite -> Long.MAX_VALUE
-}
+private fun StackedSnackbarDuration.toMillis(): Long =
+    when (this) {
+        StackedSnackbarDuration.Short -> 4000L
+        StackedSnackbarDuration.Long -> 10000L
+        StackedSnackbarDuration.Indefinite -> Long.MAX_VALUE
+    }

@@ -5,7 +5,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 @Composable
 inline fun rememberStackedSnackbarHostState(
     maxStack: Int = Int.MAX_VALUE,
-    animation: StackedSnackbarAnimation = StackedSnackbarAnimation.Bounce
+    animation: StackedSnackbarAnimation = StackedSnackbarAnimation.Bounce,
 ) = run {
     val scope = rememberCoroutineScope()
     remember {

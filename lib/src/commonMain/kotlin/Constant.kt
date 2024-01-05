@@ -15,49 +15,65 @@ enum class StackedSnackbarAnimation(
     val paddingAnimationSpec: AnimationSpec<Dp>,
     val scaleAnimationSpec: AnimationSpec<Float>,
     val enterAnimationSpec: FiniteAnimationSpec<IntOffset>,
-    val exitAnimationSpec: FiniteAnimationSpec<IntOffset>
-
+    val exitAnimationSpec: FiniteAnimationSpec<IntOffset>,
 ) {
     Bounce(
-        paddingAnimationSpec = spring(
-            stiffness = Spring.StiffnessLow,
-            dampingRatio = Spring.DampingRatioHighBouncy,
-        ),
-        scaleAnimationSpec = spring(
-            stiffness = Spring.StiffnessLow,
-            dampingRatio = Spring.DampingRatioHighBouncy,
-        ),
-        enterAnimationSpec = spring(
-            stiffness = Spring.StiffnessLow,
-            dampingRatio = Spring.DampingRatioHighBouncy,
-            visibilityThreshold = IntOffset.VisibilityThreshold
-        ),
-        exitAnimationSpec = spring(
-            stiffness = Spring.StiffnessLow,
-            dampingRatio = Spring.DampingRatioHighBouncy,
-            visibilityThreshold = IntOffset.VisibilityThreshold
-        )
+        paddingAnimationSpec =
+            spring(
+                stiffness = Spring.StiffnessLow,
+                dampingRatio = Spring.DampingRatioHighBouncy,
+            ),
+        scaleAnimationSpec =
+            spring(
+                stiffness = Spring.StiffnessLow,
+                dampingRatio = Spring.DampingRatioHighBouncy,
+            ),
+        enterAnimationSpec =
+            spring(
+                stiffness = Spring.StiffnessLow,
+                dampingRatio = Spring.DampingRatioHighBouncy,
+                visibilityThreshold = IntOffset.VisibilityThreshold,
+            ),
+        exitAnimationSpec =
+            spring(
+                stiffness = Spring.StiffnessLow,
+                dampingRatio = Spring.DampingRatioHighBouncy,
+                visibilityThreshold = IntOffset.VisibilityThreshold,
+            ),
     ),
     Slide(
-        paddingAnimationSpec = tween(
-            TWEEN_ANIMATION_DURATION, 0, FastOutSlowInEasing
-        ),
-        scaleAnimationSpec = tween(
-            TWEEN_ANIMATION_DURATION, 0, FastOutSlowInEasing
-        ),
-        enterAnimationSpec = tween(
-            TWEEN_ANIMATION_DURATION, 0, FastOutSlowInEasing
-        ),
-        exitAnimationSpec = tween(
-            TWEEN_ANIMATION_DURATION, 0, FastOutSlowInEasing
-        ),
-    )
+        paddingAnimationSpec =
+            tween(
+                TWEEN_ANIMATION_DURATION,
+                0,
+                FastOutSlowInEasing,
+            ),
+        scaleAnimationSpec =
+            tween(
+                TWEEN_ANIMATION_DURATION,
+                0,
+                FastOutSlowInEasing,
+            ),
+        enterAnimationSpec =
+            tween(
+                TWEEN_ANIMATION_DURATION,
+                0,
+                FastOutSlowInEasing,
+            ),
+        exitAnimationSpec =
+            tween(
+                TWEEN_ANIMATION_DURATION,
+                0,
+                FastOutSlowInEasing,
+            ),
+    ),
 }
-
 
 @Stable
 enum class StackedSnackbarDuration {
-    Short, Long, Indefinite
+    Short,
+    Long,
+    Indefinite,
 }
 
 internal object Constant {
@@ -70,6 +86,4 @@ internal object Constant {
     const val OFFSET_THRESHOLD_EXIT_LEFT = -350
     const val OFFSET_THRESHOLD_EXIT_RIGHT = 350
     const val TWEEN_ANIMATION_DURATION = 100
-
-
 }
