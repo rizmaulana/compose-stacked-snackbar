@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import internal.StackedSnackbar
 import internal.StackedSnackbarData
 import internal.Type
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -41,7 +42,7 @@ fun StackedSnackbarHost(
     }
     if (hostState.currentSnackbarData.isNotEmpty()) {
         StackedSnackbar(
-            snackbarData = hostState.currentSnackbarData,
+            snackbarData = hostState.currentSnackbarData.toImmutableList(),
             onSnackbarRemoved = {
                 hostState.newSnackbarHosted.value = false
                 coroutineScope.launch {

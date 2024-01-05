@@ -48,6 +48,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
+import kotlinx.collections.immutable.ImmutableList
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 import kotlin.math.abs
@@ -56,7 +57,7 @@ import kotlin.math.roundToInt
 
 @Composable
 internal fun StackedSnackbar(
-    snackbarData: List<StackedSnackbarData>,
+    snackbarData: ImmutableList<StackedSnackbarData>,
     maxStack: Int,
     animation: StackedSnackbarAnimation,
     onSnackbarRemoved: () -> Unit,
