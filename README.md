@@ -8,34 +8,94 @@ Stacked Snackbar for Compose Multiplatform (Android, iOS and Desktop). This libr
 ![GitHub top language](https://img.shields.io/github/languages/top/rizmaulana/compose-stacked-snackbar.svg)
 ![Visitor](https://visitor-badge.laobi.icu/badge?page_id=rizmaulana.compose-stacked-snackbar)
 
-## Interaction
 
+## Interaction and Animation 
+Compose Stacked Snackbar support swipe left or right interaction to dismiss the snackbar
+Interaction | Animation Type : Bounce | Animation Type : Slide |
+| ---- | ---- | ---- |
+| <video src="https://github.com/rizmaulana/compose-stacked-snackbar/assets/7193675/a0a6b4a5-265c-4c51-af6f-d9c38598af1b"/>| <video src="https://github.com/rizmaulana/compose-stacked-snackbar/assets/7193675/3a46923c-f419-49df-8d0d-a1d1cbb35636"/> | <video src="https://github.com/rizmaulana/compose-stacked-snackbar/assets/7193675/2d9e836e-022f-403a-8821-0c55c28a0d16"/> |
 
-https://github.com/rizmaulana/compose-stacked-snackbar/assets/7193675/a0a6b4a5-265c-4c51-af6f-d9c38598af1b
-
-
-Compose Stacked Snackbar support slide left or right interaction to dismiss the snackbar
-
-
-
-
-
-### Animation Type
-| Bounce | Slide |
-| ---- | ---- |
-| <video src="https://github.com/rizmaulana/compose-stacked-snackbar/assets/7193675/3a46923c-f419-49df-8d0d-a1d1cbb35636"/> | <video src="https://github.com/rizmaulana/compose-stacked-snackbar/assets/7193675/2d9e836e-022f-403a-8821-0c55c28a0d16"/> |
-## Feature
-## Installation
-### Android
-### Compose Multiplatform
-
-## Usage
+## Features
+- Built-in basic snackbar type for error, warning, info and success
+- Support custom composable snackbar
+- Swipe left or right to dismiss
+- Built-in bounce and slide animation
+- Support custom snackbar action
+- Auto dismiss with duration (short and long duration)
+- Support max stack configuration
+- Easy to use and easy to migrate from default compose snackbar
 
 #### Usage Comparison with Default Compose Snackbar
+| Deafult Compose Snackbar | Compose Stacked Snackbar |
+| ---- | ---- |
+| ![carbon (33)](https://github.com/rizmaulana/compose-stacked-snackbar/assets/7193675/59e343ae-fc7f-4e91-8805-c9a1c166ffb6) | ![carbon (32)](https://github.com/rizmaulana/compose-stacked-snackbar/assets/7193675/a5db62d4-5469-4ba6-8720-be61e718e3a8)|
+
+There is no need to add/manage coroutine scopes to launch compose stacked snackbar, because compose stacked snackbar already has internal coroutine scopes.
+
+## Installation
+
+### Compose Multiplatform
+
+### Android
+
+## Usage
+#### Basic Usage
+```kotlin
+val stackedSnackbarHostState = rememberStackedSnackbarHostState()
+
+Scaffolf(
+  snackbarHost = { StackedSnackbarHost(hostState = stackedSnackbarHostState)  }
+){
+  Button(onClick = {
+    stackedSnackbarHostState.showInfoSnackbar("Info Snackbar")
+  }){
+    Text("Click Me!")
+  }
+}
+```
+#### Snackbar Configuration
+```kotlin
+val stackedSnackbarHostState = rememberStackedSnackbarHostState(
+  maxStack = 5,
+  animation = StackedSnackbarAnimation.Slide
+)
+```
+
+#### Snackbar Type
+```kotlin
+stackedSnackbarHostState.showInfoSnackbar("Info Snackbar")
+
+stackedSnackbarHostState.showWarningSnackbar("Warning Snackbar")
+
+stackedSnackbarHostState.showErrorSnackbar("Error Snackbar")
+
+stackedSnackbarHostState.showSuccessSnackbar("Success Snackbar")
+
+stackedSnackbarHostState.showCustomSnackbar(content = { dismiss ->
+  Row {
+    Text("Custom Snackbar")
+    Image(painterResource = "close.xml", modifier = Modifier.clickable { dismiss.invoke() })
+  }
+})
+```
+
+#### Built-In Snackbar Parameter
+```kotlin
+stackedSnackbarHostState.showInfoSnackbar(
+  title = "Info Snackbar",
+  description = "Description of Info Snackbar",
+  actionLabel = "Go To Settings",
+  action = {
+    println("Action snackbar clicked")
+  },
+  duration = StackedSnackbarDuration.Short
+)
+```
+Note : Auto dismiss duration (StackedSnackbarDuration.Short and StackedSnackbarDuration.Long) only works if there is only 1 stacked snackbar, if there are more than 1 stacked snackbar, auto dismiss duration will be disable.
 
 ## Contributing
 Pull requests are welcome
 
 ## Credits
-- Inspiration by 
-- Compose Multiplatform Library Template by 
+- Snackbar Inspiration by [Emil Kowalski](https://twitter.com/emilkowalski_/status/1503372086038962178)
+- Compose Multiplatform Library Template by [KevinnZou](https://github.com/KevinnZou/compose-multiplatform-library-template) 
