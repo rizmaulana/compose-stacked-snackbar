@@ -41,7 +41,7 @@ kotlin {
                 implementation(compose.foundation)
                 implementation(compose.material)
                 @OptIn(ExperimentalComposeLibrary::class)
-                implementation(compose.components.resources)
+                implementation("org.jetbrains.compose.components:components-resources:1.4.0")
                 implementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.5")
             }
         }
@@ -87,7 +87,7 @@ mavenPublishing {
     // or when publishing to https://s01.oss.sonatype.org
     publishToMavenCentral(SonatypeHost.S01, automaticRelease = true)
     signAllPublications()
-    coordinates("io.github.rizmaulana", "compose-stacked-snackbar", "1.0.2")
+    coordinates("io.github.rizmaulana", "compose-stacked-snackbar", "1.0.4")
 
     pom {
         name.set(project.name)

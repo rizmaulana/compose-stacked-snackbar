@@ -22,7 +22,7 @@ kotlin {
 }
 
 android {
-    compileSdk = 34
+    compileSdk = (findProperty("android.compileSdk") as String).toInt()
     namespace = "com.myapplication"
 
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
@@ -39,3 +39,4 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 }
+

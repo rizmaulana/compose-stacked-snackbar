@@ -17,6 +17,8 @@ subprojects {
     configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
         version.set("1.0.1")
     }
+
+
 }
 
 tasks.register<Copy>("setUpGitHooks") {
