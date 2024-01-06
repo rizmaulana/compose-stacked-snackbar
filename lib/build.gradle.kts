@@ -83,7 +83,7 @@ mavenPublishing {
     // or when publishing to https://s01.oss.sonatype.org
     publishToMavenCentral(SonatypeHost.S01, automaticRelease = true)
     signAllPublications()
-    coordinates("id.rizmaulana.compose-stacked-snackbar", "compose-stacked-snackbar", "1.0.0")
+    coordinates("io.github.rizmaulana", "compose-stacked-snackbar", "1.0.0")
 
     pom {
         name.set(project.name)
