@@ -19,7 +19,7 @@ jobs:
       - uses: actions/setup-java@v3
         with:
           distribution: 'corretto'
-          java-version: '1.8'
+          java-version: '17'
       - name: Build Multiplatform project
         shell: bash
         run: ./gradlew assemble
