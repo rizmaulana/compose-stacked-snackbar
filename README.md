@@ -35,8 +35,43 @@ There is no need to add/manage coroutine scopes to launch compose stacked snackb
 ## Installation
 
 ### Compose Multiplatform
+Add this line to shared build.gradle
+```kotlin
+sourceSets {
+  commonMain.dependencies {
+    implementation("io.github.rizmaulana:compose-stacked-snackbar:1.0.3")
+  }
+}
+```
+
+If your android version `targetSdk` and `compileSdk` <= 33, you need to add this line on project level build.gradle
+```kotlin
+subprojects {
+    project.configurations.configureEach {
+        resolutionStrategy {
+            force("androidx.emoji2:emoji2-views-helper:1.3.0")
+            force("androidx.emoji2:emoji2:1.3.0")
+        }
+    }
+}
+```
+
 
 ### Android
+Add this line to app level build.gradle
+```kotlin
+dependencies {
+  implementation "io.github.rizmaulana:compose-stacked-snackbar:1.0.3"
+}
+
+// If your android version `targetSdk` and `compileSdk` <= 33, you need to add this line
+project.configurations.configureEach {
+    resolutionStrategy {
+        force("androidx.emoji2:emoji2-views-helper:1.3.0")
+        force("androidx.emoji2:emoji2:1.3.0")
+    }
+}
+```
 
 ## Usage
 #### Basic Usage
